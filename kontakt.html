@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | AUTOZEN Premium Studio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root { --accent: #ff0000; --bg: #050505; --card: #111111; }
+        body { background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
+        
+        /* Navigacija */
+        .navbar { background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--accent); backdrop-filter: blur(10px); }
+        .text-accent { color: var(--accent); }
+
+        /* Kontakt Kartice */
+        .contact-card {
+            background: var(--card);
+            border: 1px solid #222;
+            padding: 30px;
+            height: 100%;
+            transition: 0.3s;
+        }
+        .contact-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+        .contact-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 20px; }
+
+        /* Forma */
+        .form-control {
+            background: #000;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 15px;
+            border-radius: 4px; /* Malo zaobljenije */
+        }
+        .form-control:focus {
+            background: #000;
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: none;
+        }
+        .btn-send {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            width: 100%;
+            border-radius: 4px;
+        }
+        .btn-send:hover { background: #fff; color: #000; box-shadow: 0 0 20px var(--accent); }
+
+        /* Mapa */
+        .map-frame {
+            border: 1px solid #333;
+            padding: 5px;
+            background: #111;
+            height: 100%;
+            min-height: 450px;
+        }
+        .map-frame iframe {
+            filter: grayscale(100%) invert(90%) contrast(83%); /* Dark mode efekat za mapu */
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- FOOTER STILOVI (NOVI) --- */
+        .footer { background: #000; border-top: 1px solid #222; padding: 70px 0 30px; margin-top: 80px; }
+        .footer h5 { color: #fff; font-weight: 800; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 1px; }
+        .footer p, .footer li { color: #999; font-size: 0.95rem; line-height: 1.8; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #999; text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+        .footer-contact i { color: var(--accent); width: 25px; margin-right: 10px; }
+        .social-link { width: 35px; height: 35px; background: #1a1a1a; display: inline-flex; align-items: center; justify-content: center; color: white; border-radius: 50%; transition: 0.3s; margin-right: 10px; text-decoration: none; }
+        .social-link:hover { background: var(--accent); transform: translateY(-3px); color: #fff; }
+        .copyright { border-top: 1px solid #1a1a1a; margin-top: 50px; padding-top: 20px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-2" href="index.html"><span class="text-accent">AUTO</span>ZEN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav gap-3 fw-bold text-uppercase small">
+                <li><a class="nav-link" href="index.html">POČETNA</a></li>
+                <li><a class="nav-link" href="o-nama.html">O NAMA</a></li>
+                <li><a class="nav-link" href="usluge.html">USLUGE</a></li>
+                <li><a class="nav-link" href="galerija.html">GALERIJA</a></li>
+                <li><a class="nav-link active text-accent" href="kontakt.html">KONTAKT</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="py-5 mt-5">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h1 class="display-3 fw-bold">STUPIMO U <span class="text-accent">KONTAKT</span></h1>
+            <p class="text-secondary fs-5">Tu smo da odgovorimo na sva vaša pitanja o nezi vozila.</p>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="contact-card text-center">
+                    <i class="fas fa-map-marker-alt contact-icon"></i>
+                    <h4 class="fw-bold">LOKACIJA</h4>
+                    <p class="text-secondary">Slovac b.b. <br> 14223 Lajkovac, Srbija</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="contact-card text-center">
+                    <i class="fas fa-phone-alt contact-icon"></i>
+                    <h4 class="fw-bold">TELEFON</h4>
+                    <p class="text-secondary">Uroš Milutinović <br> <a href="tel:+381649910200" class="text-white text-decoration-none">+381 64 991 0200</a></p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="contact-card text-center">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    <h4 class="fw-bold">EMAIL</h4>
+                    <p class="text-secondary">umilutinovic25@gmail.com</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-5 align-items-stretch">
+            <div class="col-md-6" data-aos="fade-right">
+                <div class="p-4 bg-dark border border-secondary shadow-lg h-100">
+                    <h3 class="fw-bold mb-4 text-accent">POŠALJITE PORUKU</h3>
+                    <form action="procesiraj.php" method="POST">
+                        <div class="mb-3">
+                            <input type="text" name="ime" class="form-control" placeholder="Vaše Ime i Prezime" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Vaša Email Adresa" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="predmet" class="form-control" placeholder="Predmet (npr. Upit za keramičku zaštitu)">
+                        </div>
+                        <div class="mb-3">
+                            <textarea name="poruka" class="form-control" rows="5" placeholder="Vaša Poruka" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-send">Pošalji Poruku</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6" data-aos="fade-left">
+                <div class="map-frame">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d45686.09509265287!2d20.12937004863281!3d44.3638053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a13361e2b6b0b%3A0x6b5a3b7d7f7f7f7f!2sLajkovac!5e0!3m2!1ssr!2srs!4v1700000000000!5m2!1ssr!2srs" 
+                    allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+            
+            <div class="col-lg-4 col-md-6">
+                <h5 class="mb-4"><span class="text-accent">AUTO</span>ZEN</h5>
+                <p>Premium detailing centar posvećen perfekciji. Koristimo najsavremeniju tehnologiju i sertifikovane proizvode za zaštitu vašeg vozila.</p>
+                <div class="mt-4">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <h5>BRZI LINKOVI</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Početna</a></li>
+                    <li><a href="o-nama.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>O Nama</a></li>
+                    <li><a href="usluge.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Usluge i Cene</a></li>
+                    <li><a href="galerija.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Galerija Radova</a></li>
+                    <li><a href="kontakt.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Kontakt</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <h5>KONTAKT INFO</h5>
+                <ul class="list-unstyled footer-contact">
+                    <li class="mb-3 d-flex align-items-start">
+                        <i class="fas fa-map-marker-alt mt-1"></i>
+                        <span>Slovac b.b.,<br>14223 Lajkovac, Srbija</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+381 64 991 0200</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-envelope"></i>
+                        <span>umilutinovic25@gmail.com</span>
+                    </li>
+                    <li class="d-flex align-items-start">
+                        <i class="far fa-clock mt-1"></i>
+                        <span>Pon - Pet: 09:00 - 18:00<br>Subota: 09:00 - 15:00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center copyright">
+            <p class="mb-0 text-secondary">© 2026 AUTOZEN | Diplomski rad - Uroš Milutinović</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usluge i Paketi | AUTOZEN Premium</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root { --accent: #ff0000; --bg: #050505; --card: #111111; }
+        body { background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
+        
+        .navbar { background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--accent); backdrop-filter: blur(10px); }
+        .text-accent { color: var(--accent); }
+
+        /* Hero Sekcija */
+        .services-hero { 
+            height: 50vh; 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507133353243-30912e73d32c?q=80&w=2070'); 
+            background-size: cover; 
+            background-position: center; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+        /* Kartice sa cenama */
+        .pricing-card { background: var(--card); border: 1px solid #222; padding: 40px; transition: 0.5s; height: 100%; border-radius: 4px; }
+        .pricing-card:hover { transform: translateY(-10px); border-color: #333; }
+        .pricing-card.featured { border: 2px solid var(--accent); transform: scale(1.05); z-index: 2; background: #0a0a0a; box-shadow: 0 0 30px rgba(255,0,0,0.1); }
+        .pricing-card.featured:hover { transform: scale(1.05) translateY(-10px); }
+        
+        .price-tag { font-size: 3rem; font-weight: 800; color: var(--accent); margin: 20px 0; }
+        
+        /* Liste usluga */
+        .service-box { background: #0f0f0f; border-left: 3px solid var(--accent); padding: 20px; margin-bottom: 15px; display: flex; justify-content: space-between; transition: 0.3s; align-items: center; }
+        .service-box:hover { transform: translateX(10px); background: #1a1a1a; }
+        
+        /* Harmonika (FAQ) */
+        .accordion-button { font-weight: bold; }
+        .accordion-button:not(.collapsed) { background-color: #1a1a1a; color: var(--accent); box-shadow: none; }
+        .accordion-button:focus { box-shadow: none; }
+        .accordion-button::after { filter: invert(1); }
+        .accordion-button:not(.collapsed)::after { filter: invert(1) sepia(1) saturate(5) hue-rotate(-50deg); }
+
+        /* Dugmad */
+        .btn-danger { background-color: var(--accent); border: none; padding: 10px 30px; font-weight: bold; letter-spacing: 1px; }
+        .btn-outline-danger { color: var(--accent); border-color: var(--accent); padding: 10px 30px; font-weight: bold; letter-spacing: 1px; }
+        .btn-outline-danger:hover { background-color: var(--accent); color: white; }
+
+        /* --- NOVI FOOTER STILOVI --- */
+        .footer { background: #000; border-top: 1px solid #222; padding: 70px 0 30px; margin-top: 80px; }
+        .footer h5 { color: #fff; font-weight: 800; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 1px; }
+        .footer p, .footer li { color: #999; font-size: 0.95rem; line-height: 1.8; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #999; text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+        .footer-contact i { color: var(--accent); width: 25px; margin-right: 10px; }
+        .social-link { width: 35px; height: 35px; background: #1a1a1a; display: inline-flex; align-items: center; justify-content: center; color: white; border-radius: 50%; transition: 0.3s; margin-right: 10px; text-decoration: none; }
+        .social-link:hover { background: var(--accent); transform: translateY(-3px); color: #fff; }
+        .copyright { border-top: 1px solid #1a1a1a; margin-top: 50px; padding-top: 20px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-2" href="index.html"><span class="text-accent">AUTO</span>ZEN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav gap-3 fw-bold text-uppercase small">
+                <li><a class="nav-link" href="index.html">POČETNA</a></li>
+                <li><a class="nav-link" href="o-nama.html">O NAMA</a></li>
+                <li><a class="nav-link active text-accent" href="usluge.html">USLUGE</a></li>
+                <li><a class="nav-link" href="galerija.html">GALERIJA</a></li>
+                <li><a class="nav-link" href="kontakt.html">KONTAKT</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="services-hero text-center">
+    <div data-aos="zoom-out">
+        <h1 class="display-3 fw-bold">NAŠE <span class="text-accent">USLUGE</span></h1>
+        <p class="text-secondary fs-5 ls-3 text-uppercase">Najviši standardi održavanja vozila</p>
+    </div>
+</header>
+
+<section class="py-5 container">
+    <div class="row g-4 mb-5 align-items-center">
+        <div class="col-lg-4" data-aos="fade-up">
+            <div class="pricing-card text-center">
+                <h4 class="fw-bold">BASIC SHINE</h4>
+                <div class="price-tag">45€</div>
+                <ul class="list-unstyled my-4 text-secondary text-start mx-auto" style="max-width: 200px;">
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Ručno pranje</li>
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Usisavanje</li>
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Premaz za gume</li>
+                    <li class="mb-2 text-muted"><i class="fas fa-times me-2"></i>Dubinsko pranje</li>
+                </ul>
+                <a href="kontakt.html" class="btn btn-outline-danger w-100">ZAKAŽI</a>
+            </div>
+        </div>
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="pricing-card featured text-center">
+                <div class="badge bg-danger mb-3">NAJPRODAVANIJE</div>
+                <h4 class="fw-bold text-accent">PRO DETAILING</h4>
+                <div class="price-tag">149€</div>
+                <ul class="list-unstyled my-4 text-secondary text-start mx-auto" style="max-width: 200px;">
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Sve iz Basic paketa</li>
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Dubinsko pranje</li>
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Poliranje farova</li>
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Nano zaštita (6 meseci)</li>
+                </ul>
+                <a href="kontakt.html" class="btn btn-danger w-100">ZAKAŽI TERMIN</a>
+            </div>
+        </div>
+
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="pricing-card text-center">
+                <h4 class="fw-bold">CERAMIC ELITE</h4>
+                <div class="price-tag">399€</div>
+                <ul class="list-unstyled my-4 text-secondary text-start mx-auto" style="max-width: 200px;">
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Poliranje 3-stepena</li>
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Keramika (2 god)</li>
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Detailing Motora</li>
+                    <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Hemijsko čišćenje</li>
+                </ul>
+                <a href="kontakt.html" class="btn btn-outline-danger w-100">ZAKAŽI</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pt-5">
+        <div class="col-lg-6 mb-4" data-aos="fade-right">
+            <h3 class="mb-4 border-bottom border-secondary pb-2">OSTALI DETAILING</h3>
+            <div class="service-box">
+                <span>Hemijsko čišćenje sedišta</span>
+                <span class="text-accent fw-bold fs-5">50€</span>
+            </div>
+            <div class="service-box">
+                <span>Poliranje farova (par)</span>
+                <span class="text-accent fw-bold fs-5">30€</span>
+            </div>
+            <div class="service-box">
+                <span>Nega i zaštita kože</span>
+                <span class="text-accent fw-bold fs-5">40€</span>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 mb-4" data-aos="fade-left">
+            <h3 class="mb-4 border-bottom border-secondary pb-2">BRZA MEHANIKA</h3>
+            <div class="service-box">
+                <span>Mali servis (ruke)</span>
+                <span class="text-accent fw-bold fs-5">40€</span>
+            </div>
+            <div class="service-box">
+                <span>Zamena kočionih pločica</span>
+                <span class="text-accent fw-bold fs-5">30€</span>
+            </div>
+            <div class="service-box">
+                <span>Kompjuterska dijagnostika</span>
+                <span class="text-accent fw-bold fs-5">20€</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5 pt-5 max-w-800 mx-auto" data-aos="fade-up">
+        <h3 class="text-center mb-5 display-6 fw-bold">ČESTA <span class="text-accent">PITANJA</span></h3>
+        <div class="accordion accordion-flush" id="faq">
+            <div class="accordion-item bg-transparent text-white border-bottom border-secondary">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent text-white fw-bold shadow-none fs-5" data-bs-toggle="collapse" data-bs-target="#f1">
+                        Koliko traje proces poliranja?
+                    </button>
+                </h2>
+                <div id="f1" class="accordion-collapse collapse" data-bs-parent="#faq">
+                    <div class="accordion-body text-secondary">
+                        Vreme trajanja zavisi od stanja laka i veličine vozila. Obično traje između 1 i 3 dana kako bismo osigurali maksimalan kvalitet.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item bg-transparent text-white border-bottom border-secondary">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent text-white fw-bold shadow-none fs-5" data-bs-toggle="collapse" data-bs-target="#f2">
+                        Da li dajete garanciju na radove?
+                    </button>
+                </h2>
+                <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faq">
+                    <div class="accordion-body text-secondary">
+                        Apsolutno. Na keramičku zaštitu dobijate pismenu garanciju od 2 do 5 godina, u zavisnosti od izabranog paketa.
+                    </div>
+                </div>
+            </div>
+             <div class="accordion-item bg-transparent text-white border-bottom border-secondary">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-transparent text-white fw-bold shadow-none fs-5" data-bs-toggle="collapse" data-bs-target="#f3">
+                        Kako da zakažem termin?
+                    </button>
+                </h2>
+                <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faq">
+                    <div class="accordion-body text-secondary">
+                        Termin možete zakazati putem naše kontakt stranice, pozivom na broj telefona ili direktnom porukom na Instagramu.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+            
+            <div class="col-lg-4 col-md-6">
+                <h5 class="mb-4"><span class="text-accent">AUTO</span>ZEN</h5>
+                <p>Premium detailing centar posvećen perfekciji. Koristimo najsavremeniju tehnologiju i sertifikovane proizvode za zaštitu vašeg vozila.</p>
+                <div class="mt-4">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <h5>BRZI LINKOVI</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Početna</a></li>
+                    <li><a href="o-nama.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>O Nama</a></li>
+                    <li><a href="usluge.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Usluge i Cene</a></li>
+                    <li><a href="galerija.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Galerija Radova</a></li>
+                    <li><a href="kontakt.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Zakažite Termin</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <h5>KONTAKT INFO</h5>
+                <ul class="list-unstyled footer-contact">
+                    <li class="mb-3 d-flex align-items-start">
+                        <i class="fas fa-map-marker-alt mt-1"></i>
+                        <span>Bulevar Oslobođenja 120,<br>11000 Beograd, Srbija</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+381 64 123 4567</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@autozen.rs</span>
+                    </li>
+                    <li class="d-flex align-items-start">
+                        <i class="far fa-clock mt-1"></i>
+                        <span>Pon - Pet: 09:00 - 18:00<br>Subota: 09:00 - 15:00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center copyright">
+            <p class="mb-0 text-secondary">© 2026 AUTOZEN | Diplomski rad - Uroš Milutinović</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTOZEN | Premium Detailing Studio</title>
+    
+    <link rel="icon" type="image/png" href="slike/favicon.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root { --accent: #ff0000; --bg: #050505; --card: #121212; --glass: rgba(255, 255, 255, 0.03); }
+        
+        body { background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* --- PRELOADER STIL --- */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #050505; display: flex; justify-content: center;
+            align-items: center; z-index: 99999; 
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+        .loader-content { text-align: center; }
+        .logo-loader { font-family: 'Syncopate', sans-serif; font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: 5px; margin-bottom: 20px; animation: pulse 1.5s infinite; }
+        .logo-loader span { color: var(--accent); }
+        .loader-bar { width: 0; height: 3px; background: var(--accent); box-shadow: 0 0 15px var(--accent); animation: load 2s forwards; }
+        @keyframes pulse { 0%, 100% { transform: scale(0.95); opacity: 0.7; } 50% { transform: scale(1); opacity: 1; } }
+        @keyframes load { 0% { width: 0; } 100% { width: 200px; } }
+        .loader-hidden { opacity: 0; visibility: hidden; }
+
+        /* --- NAVIGACIJA --- */
+        .navbar { background: rgba(0,0,0,0.85); border-bottom: 1px solid rgba(255,0,0,0.2); backdrop-filter: blur(15px); padding: 15px 0; }
+        .navbar-brand { font-family: 'Syncopate', sans-serif; letter-spacing: 2px; }
+        .nav-link { transition: 0.3s; }
+        .nav-link:hover { color: var(--accent) !important; }
+
+        /* --- HERO --- */
+        .hero { 
+            position: relative; height: 100vh; 
+            display: flex; align-items: center; overflow: hidden;
+        }
+        /* Video pozadina */
+        .hero-video {
+            position: absolute; top: 50%; left: 50%;
+            min-width: 100%; min-height: 100%; width: auto; height: auto;
+            z-index: -1; transform: translate(-50%, -50%);
+            object-fit: cover; filter: brightness(0.4);
+        }
+        .text-accent { color: var(--accent); text-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+
+        /* --- DUGMAD --- */
+        .btn-accent { 
+            background: var(--accent); color: white; border: none; padding: 18px 45px; 
+            font-weight: 800; clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); 
+            transition: 0.4s; text-transform: uppercase; text-decoration: none; display: inline-block;
+        }
+        .btn-accent:hover { background: white; color: black; box-shadow: 0 0 30px var(--accent); transform: translateY(-5px); }
+
+        /* --- KARTICE --- */
+        .feature-card { 
+            background: var(--card); border: 1px solid #222; padding: 50px 40px; 
+            transition: 0.5s; position: relative; overflow: hidden; height: 100%;
+        }
+        .feature-card:hover { border-color: var(--accent); transform: translateY(-15px); background: #1a1a1a; }
+        .feature-card i { transition: 0.5s; }
+        .feature-card:hover i { transform: scale(1.2); color: #fff !important; }
+
+        /* --- STATS --- */
+        .stats-bar { background: #000; padding: 80px 0; border-top: 1px solid #111; }
+        .stat-number { font-size: 3.5rem; font-weight: 900; color: var(--accent); }
+        .stat-text { text-transform: uppercase; letter-spacing: 2px; color: #666; font-size: 0.8rem; }
+
+        /* --- FOOTER STILOVI --- */
+        .footer { background: #000; border-top: 1px solid #222; padding: 70px 0 30px; margin-top: 80px; }
+        .footer h5 { color: #fff; font-weight: 800; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 1px; }
+        .footer p, .footer li { color: #999; font-size: 0.95rem; line-height: 1.8; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #999; text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+        .footer-contact i { color: var(--accent); width: 25px; margin-right: 10px; }
+        .social-link { width: 35px; height: 35px; background: #1a1a1a; display: inline-flex; align-items: center; justify-content: center; color: white; border-radius: 50%; transition: 0.3s; margin-right: 10px; text-decoration: none; }
+        .social-link:hover { background: var(--accent); transform: translateY(-3px); color: #fff; }
+        .copyright { border-top: 1px solid #1a1a1a; margin-top: 50px; padding-top: 20px; font-size: 0.85rem; }
+
+        /* --- BACK TO TOP DUGME --- */
+        #myBtn {
+            display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99;
+            border: none; outline: none; background-color: var(--accent); color: white;
+            cursor: pointer; padding: 15px; border-radius: 50%; width: 50px; height: 50px;
+            font-size: 18px; transition: 0.4s; box-shadow: 0 0 15px rgba(255,0,0,0.5);
+        }
+        #myBtn:hover { background-color: #fff; color: #000; transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+
+<div id="preloader">
+    <div class="loader-content">
+        <div class="logo-loader">AUTO<span>ZEN</span></div>
+        <div class="loader-bar"></div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-2" href="index.html"><span class="text-accent">AUTO</span>ZEN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav gap-4 fw-bold align-items-center">
+                <li><a class="nav-link active" href="index.html">POČETNA</a></li>
+                <li><a class="nav-link" href="o-nama.html">O NAMA</a></li>
+                <li><a class="nav-link" href="usluge.html">USLUGE</a></li>
+                <li><a class="nav-link" href="galerija.html">GALERIJA</a></li>
+                <li><a class="nav-link" href="kontakt.html">KONTAKT</a></li>
+                <li><a class="btn-accent py-2 px-4" href="kontakt.html" style="padding: 10px 25px !important; font-size: 0.9rem;">ZAKAŽI</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="hero">
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="slike/video.mp4" type="video/mp4">
+    </video>
+
+    <div class="container" data-aos="fade-right" data-aos-duration="1500" style="position: relative; z-index: 2;">
+        <h6 class="text-accent fw-bold text-uppercase mb-3" style="letter-spacing: 7px;">Elite Detailing Studio</h6>
+        <h1 class="display-1 fw-bold mb-4">MOĆ <br><span class="text-accent">PERFEKCIJE.</span></h1>
+        <p class="lead fs-4 mb-5 text-secondary w-50">Vrhunska zaštita i estetika za vaš automobil. Mi ne radimo samo servis, mi kreiramo umetnost na točkovima.</p>
+        <div class="d-flex gap-4">
+            <a href="usluge.html" class="btn-accent">POGLEDAJ USLUGE</a>
+            <a href="galerija.html" class="btn btn-outline-light rounded-0 px-5 py-3 border-2 fw-bold">SHOWROOM</a>
+        </div>
+    </div>
+</header>
+
+<section class="stats-bar text-center">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-6 col-md-3" data-aos="zoom-in">
+                <div class="stat-number">1500+</div>
+                <div class="stat-text">Urađenih vozila</div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="stat-number">10+</div>
+                <div class="stat-text">Godina iskustva</div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="stat-number">100%</div>
+                <div class="stat-text">Zadovoljstvo</div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="stat-number">24/7</div>
+                <div class="stat-text">Podrška klijentima</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-black">
+    <div class="container py-5">
+        <div class="text-center mb-5" data-aos="fade-down">
+            <h2 class="display-4 fw-bold text-uppercase">Naša <span class="text-accent">Ekspertiza</span></h2>
+            <p class="text-secondary">Najviši standardi u svetu detailinga.</p>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="feature-card shadow">
+                    <i class="fas fa-microchip text-accent display-4 mb-4"></i>
+                    <h4 class="fw-bold">Nano Tehnologija</h4>
+                    <p class="text-secondary">Sertifikovani nanotehnološki premazi koji štite vaše vozilo od svih spoljnih uticaja.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-card shadow">
+                    <i class="fas fa-shield-halved text-accent display-4 mb-4"></i>
+                    <h4 class="fw-bold">Keramička Zaštita</h4>
+                    <p class="text-secondary">Dugotrajna zaštita laka sa hidrofobnim efektom i ekstremnim visokim sjajem.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="feature-card shadow">
+                    <i class="fas fa-gem text-accent display-4 mb-4"></i>
+                    <h4 class="fw-bold">Premium Korekcija</h4>
+                    <p class="text-secondary">Višestepeno poliranje kojim uklanjamo 99% ogrebotina i vraćamo fabrički sjaj.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container py-5">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <h2 class="display-5 fw-bold">REČI <span class="text-accent">KLIJENATA</span></h2>
+            <p class="text-secondary">Vaše zadovoljstvo je naša najbolja reklama.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-4 border border-secondary h-100" style="background: #111; border-radius: 4px;">
+                    <div class="text-accent mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-secondary fst-italic">"Neverovatna transformacija! Keramika je dala sjaj koji nisam video ni kad je auto bio nov. Preporuka za Uroša!"</p>
+                    <h6 class="mt-3 mb-0 fw-bold">Nikola J. <small class="text-secondary fw-normal">BMW G30</small></h6>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-4 border border-secondary h-100" style="background: #111; border-radius: 4px;">
+                    <div class="text-accent mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-secondary fst-italic">"Dubinsko pranje je izvuklo fleke za koje sam mislila da su večne. Auto miriše kao nov. Profesionalnost na nivou."</p>
+                    <h6 class="mt-3 mb-0 fw-bold">Marija S. <small class="text-secondary fw-normal">Audi Q5</small></h6>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="p-4 border border-secondary h-100" style="background: #111; border-radius: 4px;">
+                    <div class="text-accent mb-3"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="text-secondary fst-italic">"Redovno održavam auto ovde. Najbolji detailing u Lajkovcu i okolini. Vrede svakog dinara."</p>
+                    <h6 class="mt-3 mb-0 fw-bold">Dejan M. <small class="text-secondary fw-normal">Mercedes C-Class</small></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <h5 class="mb-4"><span class="text-accent">AUTO</span>ZEN</h5>
+                <p>Premium detailing centar posvećen perfekciji. Koristimo najsavremeniju tehnologiju i sertifikovane proizvode za zaštitu vašeg vozila.</p>
+                <div class="mt-4">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5>BRZI LINKOVI</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Početna</a></li>
+                    <li><a href="o-nama.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>O Nama</a></li>
+                    <li><a href="usluge.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Usluge i Cene</a></li>
+                    <li><a href="galerija.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Galerija Radova</a></li>
+                    <li><a href="kontakt.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <h5>KONTAKT INFO</h5>
+                <ul class="list-unstyled footer-contact">
+                    <li class="mb-3 d-flex align-items-start"><i class="fas fa-map-marker-alt mt-1"></i><span>Slovac b.b.,<br>14223 Lajkovac, Srbija</span></li>
+                    <li class="mb-3 d-flex align-items-center"><i class="fas fa-phone-alt"></i><span>+381 64 991 0200</span></li>
+                    <li class="mb-3 d-flex align-items-center"><i class="fas fa-envelope"></i><span>umilutinovic25@gmail.com</span></li>
+                    <li class="d-flex align-items-start"><i class="far fa-clock mt-1"></i><span>Pon - Pet: 09:00 - 18:00<br>Subota: 09:00 - 15:00</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center copyright">
+            <p class="mb-0 text-secondary">© 2026 AUTOZEN | Diplomski rad - Uroš Milutinović</p>
+        </div>
+    </div>
+</footer>
+
+<button onclick="topFunction()" id="myBtn" title="Na vrh"><i class="fas fa-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Inicijalizacija animacija
+    AOS.init({ duration: 1000, once: true });
+
+    // --- POPRAVLJEN PRELOADER ---
+    // Tajmer koji nasilno gasi loader posle 1.5 sekunde da ne "zabode"
+    setTimeout(() => {
+        const loader = document.getElementById("preloader");
+        if(loader) {
+            loader.style.opacity = "0";
+            setTimeout(() => { loader.style.display = "none"; }, 500);
+        }
+    }, 1500); // 1500ms = 1.5 sekundi (možeš smanjiti na 1000 ako želiš brže)
+
+    // Back to Top dugme
+    let mybutton = document.getElementById("myBtn");
+    window.onscroll = function() {scrollFunction()};
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+</body>
+</html>

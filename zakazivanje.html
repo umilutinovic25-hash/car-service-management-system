@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zakažite Termin | AUTOZEN Premium</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root { --accent: #ff0000; --bg: #050505; --card: #111111; }
+        body { background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
+        
+        /* Navigacija */
+        .navbar { background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--accent); backdrop-filter: blur(10px); }
+        .text-accent { color: var(--accent); }
+
+        /* Hero sekcija */
+        .booking-hero {
+            height: 40vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2000');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Booking Forma */
+        .booking-container {
+            background: var(--card);
+            border: 1px solid #222;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            position: relative;
+            border-radius: 4px;
+        }
+        .booking-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--accent);
+        }
+
+        .form-label { font-weight: 600; color: #aaa; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 10px; }
+        .form-control, .form-select {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #fff;
+            padding: 12px 15px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .form-control:focus, .form-select:focus {
+            background: #000;
+            color: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
+        }
+        
+        /* Placeholder boja */
+        ::placeholder { color: #555 !important; opacity: 1; }
+
+        .btn-booking {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            transition: 0.4s;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        .btn-booking:hover {
+            background: #fff;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+        }
+
+        /* Info kutija */
+        .info-box {
+            background: rgba(255, 0, 0, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        /* --- FOOTER STILOVI (NOVI) --- */
+        .footer { background: #000; border-top: 1px solid #222; padding: 70px 0 30px; margin-top: 80px; }
+        .footer h5 { color: #fff; font-weight: 800; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 1px; }
+        .footer p, .footer li { color: #999; font-size: 0.95rem; line-height: 1.8; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #999; text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+        .footer-contact i { color: var(--accent); width: 25px; margin-right: 10px; }
+        .social-link { width: 35px; height: 35px; background: #1a1a1a; display: inline-flex; align-items: center; justify-content: center; color: white; border-radius: 50%; transition: 0.3s; margin-right: 10px; text-decoration: none; }
+        .social-link:hover { background: var(--accent); transform: translateY(-3px); color: #fff; }
+        .copyright { border-top: 1px solid #1a1a1a; margin-top: 50px; padding-top: 20px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-2" href="index.html"><span class="text-accent">AUTO</span>ZEN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav gap-3 fw-bold text-uppercase small">
+                <li><a class="nav-link" href="index.html">POČETNA</a></li>
+                <li><a class="nav-link" href="o-nama.html">O NAMA</a></li>
+                <li><a class="nav-link" href="usluge.html">USLUGE</a></li>
+                <li><a class="nav-link" href="galerija.html">GALERIJA</a></li>
+                <li><a class="nav-link active text-accent" href="kontakt.html">KONTAKT</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="booking-hero">
+    <div class="container text-center" data-aos="fade-down">
+        <h1 class="display-3 fw-bold">REZERVACIJA <span class="text-accent">TERMINA</span></h1>
+        <p class="text-secondary fs-5 uppercase ls-3">Obezbedite svom vozilu premium tretman</p>
+    </div>
+</header>
+
+<section class="py-5">
+    <div class="container py-3">
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="booking-container">
+                    <form action="procesiraj.php" method="POST">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label">Ime i Prezime</label>
+                                <input type="text" name="ime_prezime" class="form-control" placeholder="Vaše ime" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Kontakt Telefon</label>
+                                <input type="text" name="telefon" class="form-control" placeholder="Vaš broj telefona" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Marka i Model Vozila</label>
+                                <input type="text" name="marka_vozila" class="form-control" placeholder="npr. Audi A6" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Izaberite Uslugu</label>
+                                <select name="usluga" class="form-select">
+                                    <option value="Basic Shine">Basic Shine Paket (45€)</option>
+                                    <option value="Pro Detailing" selected>Pro Detailing (149€)</option>
+                                    <option value="Ceramic Elite">Ceramic Elite (399€)</option>
+                                    <option value="Ostalo">Poliranje Farova / Ostalo</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Željeni Datum</label>
+                                <input type="date" name="datum_termina" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Dodatne Napomene (Opciono)</label>
+                                <textarea name="opis_kvara" class="form-control" rows="4" placeholder="Npr. ogrebotina na vratima, fleka na sedištu..."></textarea>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="info-box">
+                                    <p class="small mb-0 text-secondary">
+                                        <i class="fas fa-info-circle text-accent me-2"></i> 
+                                        Nakon slanja zahteva, naš tim će vas kontaktirati putem telefona u roku od 2 sata radi potvrde tačnog termina.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button type="submit" class="btn-booking">Potvrdi Rezervaciju</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+            
+            <div class="col-lg-4 col-md-6">
+                <h5 class="mb-4"><span class="text-accent">AUTO</span>ZEN</h5>
+                <p>Premium detailing centar posvećen perfekciji. Koristimo najsavremeniju tehnologiju i sertifikovane proizvode za zaštitu vašeg vozila.</p>
+                <div class="mt-4">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <h5>BRZI LINKOVI</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Početna</a></li>
+                    <li><a href="o-nama.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>O Nama</a></li>
+                    <li><a href="usluge.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Usluge i Cene</a></li>
+                    <li><a href="galerija.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Galerija Radova</a></li>
+                    <li><a href="kontakt.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Zakažite Termin</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <h5>KONTAKT INFO</h5>
+                <ul class="list-unstyled footer-contact">
+                    <li class="mb-3 d-flex align-items-start">
+                        <i class="fas fa-map-marker-alt mt-1"></i>
+                        <span>Slovac b.b.,<br>14223 Lajkovac, Srbija</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+381 64 991 0200</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-envelope"></i>
+                        <span>umilutinovic25@gmail.com</span>
+                    </li>
+                    <li class="d-flex align-items-start">
+                        <i class="far fa-clock mt-1"></i>
+                        <span>Pon - Pet: 09:00 - 18:00<br>Subota: 09:00 - 15:00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center copyright">
+            <p class="mb-0 text-secondary">© 2026 AUTOZEN | Diplomski rad - Uroš Milutinović</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+</script>
+
+</body>
+</html>

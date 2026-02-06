@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerija Radova | AUTOZEN Premium</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+    
+    <style>
+        :root { --accent: #ff0000; --bg: #050505; --card: #111111; }
+        body { background-color: var(--bg); color: #fff; font-family: 'Inter', sans-serif; }
+        
+        .navbar { background: rgba(0,0,0,0.9); border-bottom: 2px solid var(--accent); backdrop-filter: blur(10px); }
+        .text-accent { color: var(--accent); }
+
+        /* --- HERO VIDEO SEKCIJA --- */
+        .gallery-hero {
+            position: relative;
+            height: 60vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.6);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), #050505);
+            z-index: 1;
+        }
+
+        /* Filter Dugmad */
+        .filter-btn {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 10px 25px;
+            margin: 5px;
+            transition: 0.3s;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+        }
+
+        /* Galerija Items */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 1px solid #222;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.4s;
+            backdrop-filter: blur(2px);
+        }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        
+        .gallery-overlay h5 { font-weight: 900; text-transform: uppercase; transform: translateY(20px); transition: 0.4s; }
+        .gallery-item:hover .gallery-overlay h5 { transform: translateY(0); }
+
+        /* --- FOOTER STILOVI (NOVI) --- */
+        .footer { background: #000; border-top: 1px solid #222; padding: 70px 0 30px; margin-top: 80px; }
+        .footer h5 { color: #fff; font-weight: 800; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 1px; }
+        .footer p, .footer li { color: #999; font-size: 0.95rem; line-height: 1.8; }
+        .footer-links { list-style: none; padding: 0; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #999; text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--accent); padding-left: 5px; }
+        .footer-contact i { color: var(--accent); width: 25px; margin-right: 10px; }
+        .social-link { width: 35px; height: 35px; background: #1a1a1a; display: inline-flex; align-items: center; justify-content: center; color: white; border-radius: 50%; transition: 0.3s; margin-right: 10px; text-decoration: none; }
+        .social-link:hover { background: var(--accent); transform: translateY(-3px); color: #fff; }
+        .copyright { border-top: 1px solid #1a1a1a; margin-top: 50px; padding-top: 20px; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand fw-bold fs-2" href="index.html"><span class="text-accent">AUTO</span>ZEN</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav gap-3 fw-bold text-uppercase small">
+                <li><a class="nav-link" href="index.html">POČETNA</a></li>
+                <li><a class="nav-link" href="o-nama.html">O NAMA</a></li>
+                <li><a class="nav-link" href="usluge.html">USLUGE</a></li>
+                <li><a class="nav-link active text-accent" href="galerija.html">GALERIJA</a></li>
+                <li><a class="nav-link" href="kontakt.html">KONTAKT</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<header class="gallery-hero">
+    <video autoplay muted loop playsinline class="hero-video" poster="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200">
+        <source src="https://cdn.pixabay.com/video/2022/11/22/140111-774507968_large.mp4" type="video/mp4">
+        Vaš pretraživač ne podržava video tag.
+    </video>
+    
+    <div class="hero-overlay"></div>
+
+    <div class="container text-center hero-content" data-aos="zoom-out">
+        <h1 class="display-3 fw-bold">NAŠI <span class="text-accent">PROJEKTI</span></h1>
+        <p class="text-white fs-5 uppercase ls-3">Dashboard radova i transformacija</p>
+    </div>
+</header>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center" data-aos="fade-up">
+                <button class="filter-btn active" onclick="filterGallery('all')">Sve</button>
+                <button class="filter-btn" onclick="filterGallery('ceramic')">Keramika</button>
+                <button class="filter-btn" onclick="filterGallery('polishing')">Poliranje</button>
+                <button class="filter-btn" onclick="filterGallery('interior')">Enterijer</button>
+            </div>
+        </div>
+
+        <div class="row g-4" id="gallery-wrapper">
+            
+            <div class="col-md-4 gallery-card polishing" data-aos="fade-up">
+                <a href="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1200" class="glightbox gallery-item d-block">
+                    <img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=600" alt="Poliranje">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-magic mb-2 fs-2"></i>
+                        <h5>Korekcija Laka</h5>
+                        <small>Uklanjanje Ogrebodina</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 gallery-card ceramic" data-aos="fade-up" data-aos-delay="100">
+                <a href="slike/slika.2.jpg" class="glightbox gallery-item d-block">
+                    <img src="slike/slika.2.jpg" alt="Keramika">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-shield-alt mb-2 fs-2"></i>
+                        <h5>Keramička Zaštita</h5>
+                        <small>Hidrofobni Efekat</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 gallery-card interior" data-aos="fade-up" data-aos-delay="200">
+                <a href="slike/slika.3.jpg" class="glightbox gallery-item d-block">
+                    <img src="slike/slika.3.jpg" alt="Enterijer">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-couch mb-2 fs-2"></i>
+                        <h5>Detailing Enterijera</h5>
+                        <small>Dubinsko Pranje</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 gallery-card polishing" data-aos="fade-up">
+                <a href="slike/slika.4.jpg" class="glightbox gallery-item d-block">
+                    <img src="slike/slika.4.jpg" alt="Felne">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-car-side mb-2 fs-2"></i>
+                        <h5>Detailing Točkova</h5>
+                        <small>Zaštita Felni</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 gallery-card ceramic" data-aos="fade-up" data-aos-delay="100">
+                <a href="slike/slika.5.jpg" class="glightbox gallery-item d-block">
+                    <img src="slike/slika.5.jpg" alt="Pena">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-soap mb-2 fs-2"></i>
+                        <h5>Premium Pranje</h5>
+                        <small>Active Foam</small>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-md-4 gallery-card interior" data-aos="fade-up" data-aos-delay="200">
+                <a href="slike/slika.6.jpg" class="glightbox gallery-item d-block">
+                    <img src="slike/slika.6.jpg" alt="Motor">
+                    <div class="gallery-overlay">
+                        <i class="fas fa-cogs mb-2 fs-2"></i>
+                        <h5>Detailing Motora</h5>
+                        <small>Odmašćivanje i Dresing</small>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <div class="row g-4">
+            
+            <div class="col-lg-4 col-md-6">
+                <h5 class="mb-4"><span class="text-accent">AUTO</span>ZEN</h5>
+                <p>Premium detailing centar posvećen perfekciji. Koristimo najsavremeniju tehnologiju i sertifikovane proizvode za zaštitu vašeg vozila.</p>
+                <div class="mt-4">
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <h5>BRZI LINKOVI</h5>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Početna</a></li>
+                    <li><a href="o-nama.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>O Nama</a></li>
+                    <li><a href="usluge.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Usluge i Cene</a></li>
+                    <li><a href="galerija.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Galerija Radova</a></li>
+                    <li><a href="kontakt.html"><i class="fas fa-chevron-right text-secondary small me-2"></i>Zakažite Termin</a></li>
+                </ul>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <h5>KONTAKT INFO</h5>
+                <ul class="list-unstyled footer-contact">
+                    <li class="mb-3 d-flex align-items-start">
+                        <i class="fas fa-map-marker-alt mt-1"></i>
+                        <span>Bulevar Oslobođenja 120,<br>11000 Beograd, Srbija</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+381 64 123 4567</span>
+                    </li>
+                    <li class="mb-3 d-flex align-items-center">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@autozen.rs</span>
+                    </li>
+                    <li class="d-flex align-items-start">
+                        <i class="far fa-clock mt-1"></i>
+                        <span>Pon - Pet: 09:00 - 18:00<br>Subota: 09:00 - 15:00</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="text-center copyright">
+            <p class="mb-0 text-secondary">© 2026 AUTOZEN | Diplomski rad - Uroš Milutinović</p>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+
+    const lightbox = GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: true,
+        autoplayVideos: true
+    });
+
+    function filterGallery(category) {
+        const items = document.querySelectorAll('.gallery-card');
+        const buttons = document.querySelectorAll('.filter-btn');
+
+        buttons.forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+
+        items.forEach(item => {
+            if (category === 'all' || item.classList.contains(category)) {
+                item.style.display = 'block';
+                setTimeout(() => item.style.opacity = '1', 50);
+            } else {
+                item.style.opacity = '0';
+                setTimeout(() => item.style.display = 'none', 500);
+            }
+        });
+    }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
